@@ -1,0 +1,66 @@
+<div class="container border mt-4" style="text-align: center;">
+    <form (ngSubmit)="onSubmit()">
+        <div class="input-group mb-4 border-bottom p-3">
+            <span class="input-group-text">Search By ID</span>
+            <input type="number" class="form-control shadow-none" [formControl]="cid"/>
+            <button type="submit" class="btn btn-primary btn-lg shadow-none">
+                <i class="fa fa-search"></i>
+            </button>
+        </div>
+    </form>
+    <table class="table table-hover border">
+        <thead class="table-dark">
+            <tr>
+                <th>Customer ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{customer.cid}}</td>
+                <td>{{customer.firstName}}</td>
+                <td>{{customer.lastName}}</td>
+                <td>{{customer.email}}</td>
+                <td>{{customer.location}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="btn-group btn-lg m-2 p-2">
+        <button type="button" class="btn btn-info shadow-none" (click)="onUpdate(customer.cid)">Update your Details</button>
+        <button type="button" class="btn btn-danger shadow-none" (click)="deleteCustomer(customer.cid)">Delete your Account</button>
+    </div>
+</div>
+<div class="container border">
+    <form [formGroup] = "customerForm" (ngSubmit)="update()">
+        <div class="form-group m-3 p-3 row" style="text-align: center;">
+            <h2>Edit Your Details</h2>
+        </div>
+        <div class="form-group m-4 p-4 row border">
+            <input type="number" formControlName="cid" hidden/>
+            <label for="firstName" class="col-sm-2 col-form-label">First Name</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="firstName" formControlName="firstName" required>
+            </div>
+            <label for="lastName" class="col-sm-2 col-form-label">Last Name</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="lastName" formControlName="lastName">
+            </div>
+        </div>
+        <div class="form-group m-4 p-4 row border">
+            <label for="location" class="col-form-label col-sm-2">Location</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="location" formControlName="location">
+            </div>
+            <label for="email" class="col-form-label col-sm-2">Email</label>
+            <div class="col-sm-4">
+                <input type="email" class="form-control" id="email" formControlName="email">
+            </div>
+        </div>
+        <div class="form-group m-3 p-2 row" style="text-align: center;">
+            <button type="submit" class="btn btn-primary btn-lg shadow-none">Submit</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,42 @@
+<div class="container border my-3">
+    <h2 class="border mt-3 mb-3 p-4" style="text-align: center;">List of All Customers</h2>
+    <table class="table border table-striped" style="text-align: center;">
+        <thead class="table-dark">
+            <tr>
+                <th>Customer Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let customer of pagedCustomers">
+                <td>{{customer.cid}}</td>
+                <td>{{customer.firstName}}</td>
+                <td>{{customer.lastName}}</td>
+                <td>{{customer.email}}</td>
+                <td>{{customer.location}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <nav>
+        <ul *ngIf="pager.pages && pager.pages.length" class="pagination justify-content-center">
+            <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                <a class="page-link" (click)="setPage(1)">First</a>
+            </li>
+            <li class="page-item" [ngClass]="{disabled:pager.currentPage === 1}">
+                <a class="page-link" (click)="setPage(pager.currentPage-1)">Previous</a>
+            </li>
+            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                <a class="page-link" (click)="setPage(page)">{{page}}</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                <a class="page-link" (click)="setPage(pager.currentPage+1)">Next</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                <a class="page-link" (click)="setPage(pager.totalPages)">Last</a>
+            </li>
+        </ul>
+    </nav>
+</div>
